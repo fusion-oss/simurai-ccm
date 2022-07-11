@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="rzadpide" id="create_app_properties">
+		<createTable tableName="app_properties">
+			<column autoIncrement="true" computed="false" name="id"
+				type="int">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="PK_APP_PROPERTIES" />
+			</column>
+			<column name="application" type="varchar(100)" />
+			<column name="profile" type="varchar(100)" />
+			<column name="label" type="varchar(100)" />
+			<column name="config_key" type="varchar(100)" />
+			<column name="config_value" type="varchar(2000)" />
+			<column name="description" type="varchar(100)" />
+		</createTable>
+		<addUniqueConstraint
+			columnNames="application, profile, label, config_key"
+			constraintName="unique_application_property"
+			tableName="app_properties" />
+	</changeSet>
+
+</databaseChangeLog>
